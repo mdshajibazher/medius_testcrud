@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SPAcontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('customers', App\Http\Controllers\CustomerController::class);
+Route::resource('customers', CustomerController::class)->except('create','show');
+Route::get('/customers/{query_field}/{query}', [CustomerController::class,'search']);
 
-Route::get('/{any}', App\Http\Controllers\SPAcontroller::class)->where('any', '.*');
+Route::get('/{any}', SPAcontroller::class)->where('any', '.*');
+
 
 
 //Auth::routes();

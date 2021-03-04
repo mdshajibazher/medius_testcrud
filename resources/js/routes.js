@@ -1,7 +1,13 @@
-// const customerList = require('./components/CustomerComponent.vue').default;
-// const createcustomer = require('./components/CustomerCreateComponent').default;
-//
-// export const routes = [
-//     { path: 'customerlist', component: customerList },
-//     { path: 'createcustomer', component: createcustomer },
-// ]
+import CustomerList from './components/CustomerComponent.vue';
+import CustomerCreate from './components/CustomerCreateComponent.vue';
+import CustomerEdit from './components/CustomerEditComponent.vue';
+//import routes js
+const routes = [
+    {path: "/", component: CustomerList},
+    {path: "/customer-list", component: CustomerList},
+    {path: "/create-customer", component: CustomerCreate},
+    {path: "/edit-customer/:id", component: CustomerEdit},
+
+]
+
+export default routes;

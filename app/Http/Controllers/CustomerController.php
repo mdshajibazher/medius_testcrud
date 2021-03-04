@@ -8,22 +8,21 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return Customer::all();
+        //if request has per_page then ok otherwise set static value 10;
+        $paginate_perpage = $request->per_page ? $request->per_page : 10;
+        $orderBy = $request->orderBy ? $request->orderBy : 'id';
+        $orderByDir = $request->orderByDir ? $request->orderByDir : 'desc';
+        return Customer::orderBy($orderBy,$orderByDir)->paginate($paginate_perpage);
     }
 
-
-    public function create()
-    {
-        return view('backend.customers.create');
-    }
 
 
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|max:30|unique:customers',
+            'name' => 'required|max:30',
             'email' => 'required|email|unique:customers',
             'phone' => 'required|unique:customers',
         ]);
@@ -37,22 +36,14 @@ class CustomerController extends Controller
     }
 
 
-    public function show(Customer $customer)
-    {
-        //
+    public function edit(Customer $customer){
+        return $customer;
     }
-
-
-    public function edit($id)
-    {
-        return Customer::findOrFail($id);
-    }
-
 
     public function update(Request $request, Customer $customer)
     {
         $this->validate($request,[
-            'name' => 'required|max:30|unique:customers,name,'.$customer->id,
+            'name' => 'required|max:30',
             'email' => 'required|email|unique:customers,email,'.$customer->id,
             'phone' => 'required|unique:customers,phone,'.$customer->id,
         ]);
@@ -68,5 +59,14 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    //for search
+    public function search($query_field,$query, Request $request){
+        //if request has per_page then ok otherwise set static value 10;
+        $paginate_perpage = $request->per_page ? $request->per_page : 10;
+        $orderBy = $request->orderBy ? $request->orderBy : 'id';
+        $orderByDir = $request->orderByDir ? $request->orderByDir : 'desc';
+        return Customer::where($query_field,'LIKE',"%$query%")->orderBy($orderBy,$orderByDir)->paginate($paginate_perpage);
     }
 }

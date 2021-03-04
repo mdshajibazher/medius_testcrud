@@ -2,7 +2,7 @@
 
     <div class="card">
         <div class="card-header">
-            Add New Customers  <router-link class="btn btn-dark float-right" to="/customerlist">Back</router-link>
+            Add New Customers  <router-link class="btn btn-dark float-right" to="/customer-list">Back</router-link>
         </div>
         <div class="card-body">
             <form action="" method="post"  @submit.prevent="storeCustomer" @keydown="form.onKeydown($event)">
@@ -67,7 +67,7 @@ export default {
                         })
 
                         //sleep(1);
-                        this.$router.push({ path:'customerlist' })
+                        this.$router.push({ path:'/customer-list' })
                     } else {
                         this.$Progress.fail()
                         Toast.fire({

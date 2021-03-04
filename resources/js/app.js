@@ -32,34 +32,17 @@ const progressbaroptions = {
 }
 Vue.use(VueProgressBar, progressbaroptions)
 Vue.use(VueRouter)
-//Vue.component('customercreate-component', require('./components/CustomerCreateComponent.vue').default);
-//Vue.component('customeredit-component', require('./components/CustomerEditComponent.vue').default);
-// Vue.component( CustomerList, require('./components/CustomerComponent.vue').default);
-
-
-
-
-
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
+//Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 
-const customerList = require('./components/CustomerComponent.vue').default;
-const customerCreate = require('./components/CustomerCreateComponent.vue').default;
-const customerEdit = require('./components/CustomerEditComponent.vue').default;
-//import routes js
-const routes = [
-    {path: "/", component: customerList},
-    {path: "/customerlist", component: customerList},
-    {path: "/createcustomer", component: customerCreate},
-    {path: "/editcustomer/:id", component: customerEdit},
-
-]
-
-
+import routes from './routes'
+//require('./routes.js');
 
 const router = new VueRouter({
+    mode: 'history',
     routes // short for `routes: routes`
 })
 

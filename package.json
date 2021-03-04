@@ -25,6 +25,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2",
+        "laravel-vue-pagination": "^2.3.1",
         "sweetalert2": "^10.15.5",
         "v-form": "^2.3.5",
         "vform": "^1.0.1",

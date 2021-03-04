@@ -2,7 +2,7 @@
 
     <div class="card">
         <div class="card-header">
-            Add New Customers <a href="/customers" class="btn btn-dark float-right">Back</a>
+            Edit Customers <router-link class="btn btn-dark float-right" to="/customer-list">Back</router-link>
         </div>
         <div class="card-body">
             <form action="" method="post"  @submit.prevent="updateCustomer" @keydown="form.onKeydown($event)">
@@ -75,6 +75,7 @@ export default {
                 })
 
         },
+
         updateCustomer(){
             this.$Progress.start()
             this.form.busy = true
@@ -87,8 +88,7 @@ export default {
                             title: 'Customer Updated Successfully'
                         })
 
-                        //sleep(1);
-                        this.$router.push({ path:'customerlist' })
+                        this.$router.push({ path:'/customer-list' })
                     } else {
                         this.$Progress.fail()
                         Toast.fire({
